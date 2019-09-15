@@ -61,7 +61,8 @@ class BBView: SCNView, SCNSceneRendererDelegate {
         self.sizeLabel.fontSize = 24
         self.sizeLabel.fontColor = SKColor.black
         self.sizeLabel.horizontalAlignmentMode = .left
-        self.sizeLabel.position.y = 25.0
+        // I don't know why but "self.sizeLabel.position.y = 25.0" causes a compile error
+        self.sizeLabel.position = CGPoint(x: self.sizeLabel.position.x, y: 25.0)
 
         skScene.addChild(self.sizeLabel)
     }
@@ -93,8 +94,7 @@ class BBView: SCNView, SCNSceneRendererDelegate {
         let height = maxY - minY
         //let depth = maxZ - minZ
 
-        self.boundingBox.position.x = minX
-        self.boundingBox.position.y = minY
+        self.boundingBox.position = CGPoint(x: minX, y: minY)
         self.boundingBox.xScale = width / self.bbSize
         self.boundingBox.yScale = height / self.bbSize
         
